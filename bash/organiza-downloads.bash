@@ -21,5 +21,26 @@ arquivos="$downloads_dir"/*
 
 # Laço de repetição para que seja possível analisar individualmente cada arquivo
 for arquivo in $arquivos; do
-    echo "$arquivo"
+    # Condicional para verificar se é um arquivo válido e não um diretório
+    if [ -f "$arquivo" ]; then
+        extensao="${arquivo##*.}"
+		# Condicional para verificar se arquivo se enquadra em alguma das extensões mapeadas
+        case "$extensao" in
+            jpg|jpeg|png|gif|bmp)
+                echo "O arquivo é uma imagem"
+                ;;
+            pdf|doc|docx|ppt|pptx|xls|xlsx|odt|odp|ods|txt)
+                echo "O arquivo é um documento"
+                ;;
+            mp3|wav|flac)
+                echo "O arquivo é uma música"
+                ;;
+            mp4|mkv|avi|mov)
+                echo "O arquivo é um vídeo"
+                ;;
+            *)
+                echo "O arquivo não está entre os tipos de arquivo mapeados"
+                ;;
+        esac
+    fi
 done

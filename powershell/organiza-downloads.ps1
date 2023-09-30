@@ -26,10 +26,8 @@ $diretorios = @(
 
 foreach ($dir in $diretorios) {
     if (Test-Path -Path $dir -PathType Container) {
-        Write-Host "O diretório '$dir' já existe."
     } else {
         New-Item -Path $dir -ItemType Directory -Force
-        Write-Host "Diretório '$dir' criado com sucesso."
     }
 }
 
@@ -38,5 +36,43 @@ $arquivos= Get-ChildItem -Path $downloads_dir | Where-Object { -not $_.PSIsConta
 
 # Laço de repetição para que seja possível analisar individualmente cada arquivo
 foreach ($arquivo in $arquivos) {
-    Write-Host "$arquivo"
+    $extensao = $arquivo.Extension.TrimStart(".")
+    # Condicional para verificar se a extensão não veio como vazia
+    if ($extensao -ne "") {
+        # Condicional para verificar se arquivo se enquadra em alguma das extensões mapeadas
+        switch -Wildcard ($extensao) {
+            #Videos
+            "mp4" { Write-Host "O arquivo é um vídeo" }
+            "mkv" { Write-Host "O arquivo é um vídeo" }
+            "avi" { Write-Host "O arquivo é um vídeo" }
+            "mov" { Write-Host "O arquivo é um vídeo" }
+
+            #Imagens
+            "jpg" { Write-Host "O arquivo é uma imagem" }
+            "jpeg"{ Write-Host "O arquivo é uma imagem" }
+            "png" { Write-Host "O arquivo é uma imagem" }
+            "gif" { Write-Host "O arquivo é uma imagem" }
+            "bmp" { Write-Host "O arquivo é uma imagem" }
+        
+            #Documentos
+            "pdf" { Write-Host "O arquivo é um documento" }
+            "doc" { Write-Host "O arquivo é um documento" }
+            "docx"{ Write-Host "O arquivo é um documento" }
+            "ppt" { Write-Host "O arquivo é um documento" }
+            "pptx"{ Write-Host "O arquivo é um documento" }
+            "xls" { Write-Host "O arquivo é um documento" }
+            "xlsx"{ Write-Host "O arquivo é um documento" }
+            "odt" { Write-Host "O arquivo é um documento" }
+            "odp" { Write-Host "O arquivo é um documento" }
+            "ods" { Write-Host "O arquivo é um documento" }
+            "txt" { Write-Host "O arquivo é um documento" }
+            #Musicas
+            "mp3" { Write-Host "O arquivo é uma música" }
+            "wav" { Write-Host "O arquivo é uma música" }
+            "flac"{ Write-Host "O arquivo é uma música" }
+
+            #Outros
+            default { Write-Host "O arquivo não está entre os tipos de arquivo mapeados" }
+        }
+    }
 }
