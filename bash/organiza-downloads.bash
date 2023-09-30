@@ -5,3 +5,10 @@ echo "Iniciando o script de organização da pasta de downloads..."
 
 # Diretório de downloads
 downloads_dir="$HOME/Downloads"
+
+# Diretórios de destino para diferentes tipos de arquivos
+imagens_dir="$HOME/Downloads/Imagens"
+documentos_dir="$HOME/Downloads/Documentos"
+musicas_dir="$HOME/Downloads/Músicas"
+videos_dir="$HOME/Downloads/Vídeos"
+outros_dir="$HOME/Downloads/Outros"
