@@ -12,3 +12,6 @@ documentos_dir="$HOME/Downloads/Documentos"
 musicas_dir="$HOME/Downloads/Músicas"
 videos_dir="$HOME/Downloads/Vídeos"
 outros_dir="$HOME/Downloads/Outros"
+
+# Certifique-se de que os diretórios de destino existam
+mkdir -p "$imagens_dir" "$documentos_dir" "$musicas_dir" "$videos_dir" "$outros_dir"
