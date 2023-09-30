@@ -36,43 +36,47 @@ $arquivos= Get-ChildItem -Path $downloads_dir | Where-Object { -not $_.PSIsConta
 
 # Laço de repetição para que seja possível analisar individualmente cada arquivo
 foreach ($arquivo in $arquivos) {
+    # Informa qual arquivo está sendo movido
+	Write-Host "Movendo arquivo: $arquivo ..."
     $extensao = $arquivo.Extension.TrimStart(".")
     # Condicional para verificar se a extensão não veio como vazia
     if ($extensao -ne "") {
-        # Condicional para verificar se arquivo se enquadra em alguma das extensões mapeadas
-        switch -Wildcard ($extensao) {
+        # Condicional para verificar se arquivo se enquadra em alguma das extensões mapeadas. Ao enquadrar, é retornado o diretório destino
+        $diretorioDestino = switch -Wildcard ($extensao) {
             #Videos
-            "mp4" { Write-Host "O arquivo é um vídeo" }
-            "mkv" { Write-Host "O arquivo é um vídeo" }
-            "avi" { Write-Host "O arquivo é um vídeo" }
-            "mov" { Write-Host "O arquivo é um vídeo" }
+            "mp4" { $videos_dir }
+            "mkv" { $videos_dir }
+            "avi" { $videos_dir }
+            "mov" { $videos_dir }
 
             #Imagens
-            "jpg" { Write-Host "O arquivo é uma imagem" }
-            "jpeg"{ Write-Host "O arquivo é uma imagem" }
-            "png" { Write-Host "O arquivo é uma imagem" }
-            "gif" { Write-Host "O arquivo é uma imagem" }
-            "bmp" { Write-Host "O arquivo é uma imagem" }
-        
+            "jpg" { $imagens_dir }
+            "jpeg"{ $imagens_dir }
+            "png" { $imagens_dir }
+            "gif" { $imagens_dir }
+            "bmp" { $imagens_dir }
+            
             #Documentos
-            "pdf" { Write-Host "O arquivo é um documento" }
-            "doc" { Write-Host "O arquivo é um documento" }
-            "docx"{ Write-Host "O arquivo é um documento" }
-            "ppt" { Write-Host "O arquivo é um documento" }
-            "pptx"{ Write-Host "O arquivo é um documento" }
-            "xls" { Write-Host "O arquivo é um documento" }
-            "xlsx"{ Write-Host "O arquivo é um documento" }
-            "odt" { Write-Host "O arquivo é um documento" }
-            "odp" { Write-Host "O arquivo é um documento" }
-            "ods" { Write-Host "O arquivo é um documento" }
-            "txt" { Write-Host "O arquivo é um documento" }
+            "pdf" { $documentos_dir }
+            "doc" { $documentos_dir }
+            "docx"{ $documentos_dir }
+            "ppt" { $documentos_dir }
+            "pptx"{ $documentos_dir }
+            "xls" { $documentos_dir }
+            "xlsx"{ $documentos_dir }
+            "odt" { $documentos_dir }
+            "odp" { $documentos_dir }
+            "ods" { $documentos_dir }
+            "txt" { $documentos_dir }
             #Musicas
-            "mp3" { Write-Host "O arquivo é uma música" }
-            "wav" { Write-Host "O arquivo é uma música" }
-            "flac"{ Write-Host "O arquivo é uma música" }
+            "mp3" { $musicas_dir }
+            "wav" { $musicas_dir }
+            "flac"{ $musicas_dir }
 
             #Outros
-            default { Write-Host "O arquivo não está entre os tipos de arquivo mapeados" }
+            default { $outros_dir }
         }
+        # Move o arquivo para o respectivo diretório destino
+        Move-Item -Path $arquivo.FullName -Destination $diretorioDestino
     }
 }

@@ -23,23 +23,26 @@ arquivos="$downloads_dir"/*
 for arquivo in $arquivos; do
     # Condicional para verificar se é um arquivo válido e não um diretório
     if [ -f "$arquivo" ]; then
+        # Informa qual arquivo está sendo movido
+	    echo "Movendo arquivo: $arquivo ..."
         extensao="${arquivo##*.}"
-		# Condicional para verificar se arquivo se enquadra em alguma das extensões mapeadas
+        # Condicional para verificar se arquivo se enquadra em alguma das extensões mapeadas
         case "$extensao" in
             jpg|jpeg|png|gif|bmp)
-                echo "O arquivo é uma imagem"
+                # Move o arquivo para o respectivo diretório destino
+                mv "$arquivo" "$imagens_dir/"
                 ;;
             pdf|doc|docx|ppt|pptx|xls|xlsx|odt|odp|ods|txt)
-                echo "O arquivo é um documento"
+                mv "$arquivo" "$documentos_dir/"
                 ;;
             mp3|wav|flac)
-                echo "O arquivo é uma música"
+                mv "$arquivo" "$musicas_dir/"
                 ;;
             mp4|mkv|avi|mov)
-                echo "O arquivo é um vídeo"
+                mv "$arquivo" "$videos_dir/"
                 ;;
             *)
-                echo "O arquivo não está entre os tipos de arquivo mapeados"
+                mv "$arquivo" "$outros_dir/"
                 ;;
         esac
     fi
