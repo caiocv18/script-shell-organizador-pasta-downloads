@@ -18,3 +18,8 @@ mkdir -p "$imagens_dir" "$documentos_dir" "$musicas_dir" "$videos_dir" "$outros_
 
 # Obtenha uma lista de arquivos no diretórios de downloads
 arquivos="$downloads_dir"/*
+
+# Laço de repetição para que seja possível analisar individualmente cada arquivo
+for arquivo in $arquivos; do
+    echo "$arquivo"
+done
