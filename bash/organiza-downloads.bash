@@ -47,3 +47,6 @@ for arquivo in $arquivos; do
         esac
     fi
 done
+
+echo "Organizacao de pasta concluida!"
+read -p "Pressione Enter para continuar...:"

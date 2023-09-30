@@ -80,3 +80,6 @@ foreach ($arquivo in $arquivos) {
         Move-Item -Path $arquivo.FullName -Destination $diretorioDestino
     }
 }
+
+Write-Host "Organizacao de pasta concluida!"
+Pause
