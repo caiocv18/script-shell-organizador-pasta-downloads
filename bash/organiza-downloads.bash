@@ -15,3 +15,6 @@ outros_dir="$HOME/Downloads/Outros"
 
 # Certifique-se de que os diretórios de destino existam
 mkdir -p "$imagens_dir" "$documentos_dir" "$musicas_dir" "$videos_dir" "$outros_dir"
+
+# Obtenha uma lista de arquivos no diretórios de downloads
+arquivos="$downloads_dir"/*

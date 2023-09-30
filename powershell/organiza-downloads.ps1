@@ -32,3 +32,6 @@ foreach ($dir in $diretorios) {
         Write-Host "Diretório '$dir' criado com sucesso."
     }
 }
+
+# Obtenha uma lista de arquivos no diretórios de downloads
+$arquivos= Get-ChildItem -Path $downloads_dir | Where-Object { -not $_.PSIsContainer }
